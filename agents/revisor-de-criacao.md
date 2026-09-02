@@ -18,11 +18,12 @@ aprova, não para quem produz.
 plugin está instalado. Rode exatamente isto e guarde o resultado como `BASE`:
 
 ```bash
-BASE="${CLAUDE_PLUGIN_ROOT:-$(find "$HOME/.claude/plugins/cache" -maxdepth 5 -type d -path '*revisor-de-criacao*' -name conhecimento 2>/dev/null | head -1 | xargs -r dirname)}"; echo "BASE=$BASE"; ls "$BASE/conhecimento/regras-gerais.md"
+BASE="${CLAUDE_PLUGIN_ROOT:-$(find "$HOME/.claude/plugins" -maxdepth 6 -type d -name conhecimento -path '*revisor*' 2>/dev/null | head -1 | xargs -r dirname)}"; echo "BASE=$BASE"; ls "$BASE/conhecimento/regras-gerais.md"
 ```
 
-O caminho muda de máquina para máquina e a cada versão do plugin, por isso ele é
-**descoberto, nunca presumido**. Depois de descoberto, use o caminho absoluto que saiu
+O caminho muda de máquina para máquina, a cada versão do plugin e conforme a forma de
+instalação (o Claude Code guarda os arquivos ora em `plugins/cache/`, ora em
+`plugins/marketplaces/`). Por isso ele é **descoberto, nunca presumido**. Depois de descoberto, use o caminho absoluto que saiu
 em todos os comandos seguintes.
 
 > **Não use `${CLAUDE_PLUGIN_ROOT}` diretamente dentro de comandos do shell.** A variável
