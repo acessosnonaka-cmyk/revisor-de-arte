@@ -13,14 +13,29 @@ Não cria entregas. Não refaz material. **Nunca edita o que revisa.**
 Uma vez, em cada máquina:
 
 ```bash
-claude plugin marketplace add <URL-DO-REPOSITORIO>
+claude plugin marketplace add acessosnonaka-cmyk/revisor-de-arte
 ```
 
 ```bash
-claude plugin install revisor-de-criacao
+claude plugin install revisor-de-criacao@squad-legend-ai
 ```
 
+Os **dois** comandos são necessários, nesta ordem: o primeiro registra o catálogo, o
+segundo instala o plugin. Numa máquina limpa, o `install` sozinho não encontra nada.
+
 Pronto. O agente passa a existir em qualquer pasta, em qualquer sessão.
+
+Para conferir:
+
+```bash
+claude plugin list
+```
+
+Para atualizar, quando houver versão nova:
+
+```bash
+claude plugin marketplace update squad-legend-ai
+```
 
 ### Requisitos
 
