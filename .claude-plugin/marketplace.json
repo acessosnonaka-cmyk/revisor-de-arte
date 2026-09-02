@@ -1,0 +1,13 @@
+{
+  "name": "squad-legend-ai",
+  "owner": {
+    "name": "Squad Legend AI"
+  },
+  "plugins": [
+    {
+      "name": "revisor-de-criacao",
+      "source": "./",
+      "description": "Revisor de Criação — controle de qualidade de criativos, landing pages e vídeos."
+    }
+  ]
+}

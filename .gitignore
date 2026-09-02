@@ -1,0 +1,12 @@
+# Pastas de trabalho e material de cliente — nunca versionar
+.tmp-drive/
+revisoes/
+validacao/
+calibracao/aprovadas/
+calibracao/reprovadas/
+
+# Artefatos de sistema
+*:Zone.Identifier
+.DS_Store
+Thumbs.db
+desktop.ini
