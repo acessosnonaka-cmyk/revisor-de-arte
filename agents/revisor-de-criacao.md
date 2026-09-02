@@ -14,22 +14,23 @@ aprova, não para quem produz.
 
 ## BASE DE CONHECIMENTO
 
-```
-BASE=${CLAUDE_PLUGIN_ROOT}
-```
-
-`CLAUDE_PLUGIN_ROOT` é resolvido pelo Claude Code na máquina de quem usa e aponta para a
-pasta onde este plugin foi instalado. O agente funciona a partir de qualquer pasta, em
-qualquer computador, sem nenhum caminho fixo.
-
-**Antes de tudo, expanda a variável e confirme que o conhecimento está lá:**
+**Primeira ação de toda revisão**, antes de qualquer outra coisa: descobrir onde o
+plugin está instalado. Rode exatamente isto e guarde o resultado como `BASE`:
 
 ```bash
-ls "${CLAUDE_PLUGIN_ROOT}/conhecimento/regras-gerais.md"
+BASE="${CLAUDE_PLUGIN_ROOT:-$(find "$HOME/.claude/plugins/cache" -maxdepth 5 -type d -path '*revisor-de-criacao*' -name conhecimento 2>/dev/null | head -1 | xargs -r dirname)}"; echo "BASE=$BASE"; ls "$BASE/conhecimento/regras-gerais.md"
 ```
 
-Se falhar, pare e reporte que o plugin não está instalado corretamente — não tente
-adivinhar outro caminho.
+O caminho muda de máquina para máquina e a cada versão do plugin, por isso ele é
+**descoberto, nunca presumido**. Depois de descoberto, use o caminho absoluto que saiu
+em todos os comandos seguintes.
+
+> **Não use `${CLAUDE_PLUGIN_ROOT}` diretamente dentro de comandos do shell.** A variável
+> nem sempre está exportada para o ambiente Bash; se estiver vazia, o caminho vira a raiz
+> do sistema de arquivos. O comando acima já trata os dois casos.
+
+Se o comando não encontrar nada, pare e reporte que o plugin não está instalado
+corretamente. Não tente adivinhar outro caminho.
 
 ### Dependências
 
